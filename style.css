@@ -1,0 +1,294 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #333;
+}
+
+#gameContainer {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.screen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.screen.active {
+    display: flex;
+}
+
+/* Menu Screen */
+#menuScreen {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.menuContent {
+    text-align: center;
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+}
+
+.menuContent h1 {
+    font-size: 3.5em;
+    color: #764ba2;
+    margin-bottom: 10px;
+    animation: pulse 2s infinite;
+}
+
+.menuContent h2 {
+    font-size: 2.5em;
+    color: #764ba2;
+    margin-bottom: 20px;
+}
+
+.subtitle {
+    font-size: 1.2em;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.playerInfo {
+    background: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 1.1em;
+}
+
+.playerInfo p {
+    margin: 10px 0;
+    color: #333;
+}
+
+.btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1em;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 10px;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btnLarge {
+    padding: 15px 40px;
+    font-size: 1.3em;
+    width: 100%;
+    margin: 15px 0;
+}
+
+.btnSmall {
+    padding: 8px 15px;
+    font-size: 0.9em;
+}
+
+/* Game Screen */
+#gameScreen {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    flex-direction: column;
+}
+
+.gameHeader {
+    position: absolute;
+    top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 10;
+}
+
+.playerStats, .matchTimer {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+.playerStats p, .matchTimer p {
+    margin: 5px 0;
+}
+
+#gameCanvas {
+    border: 3px solid white;
+    border-radius: 10px;
+    background: #87ceeb;
+    margin-top: 80px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.mathProblem {
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    z-index: 20;
+    animation: slideUp 0.3s ease;
+}
+
+.problemBox {
+    text-align: center;
+}
+
+#problemText {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #764ba2;
+    margin-bottom: 15px;
+}
+
+.answers {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.answerBtn {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: bold;
+}
+
+.answerBtn:hover {
+    background: #764ba2;
+    transform: scale(1.1);
+}
+
+.answerBtn:active {
+    transform: scale(0.95);
+}
+
+.answerBtn.correct {
+    background: #4caf50;
+}
+
+.answerBtn.wrong {
+    background: #f44336;
+}
+
+#pauseBtn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 15;
+}
+
+/* Pause Screen */
+#pauseScreen {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+#pauseScreen .menuContent {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+}
+
+/* Game Over Screen */
+#gameOverScreen {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+#gameOverScreen .menuContent {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+}
+
+.gameOverStats {
+    background: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    text-align: left;
+    font-size: 1.1em;
+}
+
+.gameOverStats p {
+    margin: 10px 0;
+    color: #333;
+}
+
+/* Animations */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateX(-50%) translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .menuContent {
+        max-width: 90%;
+    }
+    
+    #gameCanvas {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+    }
+    
+    .mathProblem {
+        width: 90%;
+        bottom: 80px;
+    }
+}
