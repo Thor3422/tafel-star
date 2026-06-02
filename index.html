@@ -3,78 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tafel Star - Arena Battle Game</title>
+    <title>⭐ Tafel Star - Complete Battle Game</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="gameContainer">
-        <!-- Menu Screen -->
-        <div id="menuScreen" class="screen active">
+        <!-- Main Menu -->
+        <div id="mainMenu" class="screen active">
             <div class="menuContent">
                 <h1>⭐ TAFEL STAR</h1>
-                <p class="subtitle">Vecht door tafels op te lossen!</p>
-                
-                <div class="playerInfo">
-                    <p>Trophies: <span id="displayTrophies">0</span></p>
-                    <p>Coins: <span id="displayCoins">0</span></p>
-                </div>
-                
-                <button class="btn btnLarge" id="playBtn">🎮 SPELEN</button>
-                <button class="btn" id="statsBtn">📊 Stats</button>
-                <button class="btn" id="settingsBtn">⚙️ Instellingen</button>
+                <p class="subtitle">Master Your Skills, Dominate The Arena!</p>
+                <button class="btn btnLarge" id="playBtn">🎮 PLAY</button>
+                <button class="btn" id="profileBtn">👤 PROFILE</button>
+                <button class="btn" id="brawlersBtn">🦸 BRAWLERS</button>
+                <button class="btn" id="trophyBtn">🏆 TROPHY ROAD</button>
             </div>
         </div>
 
-        <!-- Game Screen (Arena) -->
-        <div id="gameScreen" class="screen">
+        <!-- Brawler Selection -->
+        <div id="brawlerSelect" class="screen">
+            <div class="selectContent">
+                <h2>SELECT YOUR BRAWLER</h2>
+                <div id="brawlerGrid" class="brawlerGrid">
+                    <!-- Brawlers will be dynamically added -->
+                </div>
+                <button class="btn" id="backFromSelect">← BACK</button>
+            </div>
+        </div>
+
+        <!-- Game Arena -->
+        <div id="gameArena" class="screen">
             <div class="gameHeader">
                 <div class="playerStats">
-                    <p>❤️ HP: <span id="playerHp">100</span>/100</p>
-                    <p>⚔️ Level: <span id="playerLevel">1</span></p>
+                    <p>❤️ <span id="playerHp">100</span>/<span id="playerMaxHp">100</span></p>
+                    <p>⚡ <span id="brawlerName">Shelly</span></p>
+                    <p>🏆 <span id="currentTrophies">0</span></p>
                 </div>
-                <div class="matchTimer">
-                    <p>⏱️ Tijd: <span id="matchTimer">0</span>s</p>
+                <div class="matchInfo">
+                    <p>⏱️ <span id="matchTimer">0</span>s</p>
+                    <p>👾 Wave: <span id="waveCount">1</span></p>
                 </div>
             </div>
 
-            <canvas id="gameCanvas" width="800" height="600"></canvas>
+            <canvas id="gameCanvas" width="900" height="600"></canvas>
 
             <div class="mathProblem" id="mathProblem">
                 <div class="problemBox">
                     <p id="problemText">7 × 6 = ?</p>
-                    <div class="answers" id="answersContainer">
-                        <!-- Answers zullen hier dynamisch worden toegevoegd -->
-                    </div>
+                    <div class="answers" id="answersContainer"></div>
+                    <p class="feedback" id="feedback"></p>
                 </div>
             </div>
 
-            <button class="btn btnSmall" id="pauseBtn">⏸️ Pauze</button>
-        </div>
-
-        <!-- Pause Screen -->
-        <div id="pauseScreen" class="screen">
-            <div class="menuContent">
-                <h2>GEPAUZEERD</h2>
-                <button class="btn btnLarge" id="resumeBtn">▶️ Doorgaan</button>
-                <button class="btn" id="menuBtn">🏠 Menu</button>
+            <div class="gameControls">
+                <button class="btn btnSmall" id="pauseBtn">⏸️ PAUSE</button>
+                <button class="btn btnSmall" id="quitBtn">❌ QUIT</button>
             </div>
         </div>
 
-        <!-- Game Over Screen -->
+        <!-- Game Over -->
         <div id="gameOverScreen" class="screen">
             <div class="menuContent">
                 <h2 id="gameOverTitle">GAME OVER</h2>
                 <div class="gameOverStats">
-                    <p>Trophies gewonnen: <span id="trophiesWon">+10</span></p>
-                    <p>Coins verdiend: <span id="coinsEarned">+50</span></p>
-                    <p>Vijanden verslagen: <span id="enemiesDefeated">3</span></p>
+                    <p>🏆 Trophies Won: <span id="trophiesWon">+50</span></p>
+                    <p>💰 Coins Earned: <span id="coinsEarned">+200</span></p>
+                    <p>⭐ Stars Earned: <span id="starsEarned">+5</span></p>
+                    <p>👾 Enemies Defeated: <span id="enemiesDefeated">12</span></p>
                 </div>
-                <button class="btn btnLarge" id="playAgainBtn">🔄 Opnieuw spelen</button>
-                <button class="btn" id="menuBtn2">🏠 Menu</button>
+                <button class="btn btnLarge" id="playAgainBtn">🔄 PLAY AGAIN</button>
+                <button class="btn" id="menuBtn">🏠 MENU</button>
+            </div>
+        </div>
+
+        <!-- Profile Screen -->
+        <div id="profileScreen" class="screen">
+            <div class="profileContent">
+                <h2>👤 PLAYER PROFILE</h2>
+                <div class="profileStats">
+                    <div class="statBox">
+                        <p class="statLabel">💰 COINS</p>
+                        <p class="statValue" id="profileCoins">0</p>
+                    </div>
+                    <div class="statBox">
+                        <p class="statLabel">⭐ STARS</p>
+                        <p class="statValue" id="profileStars">0</p>
+                    </div>
+                    <div class="statBox">
+                        <p class="statLabel">🏆 TROPHIES</p>
+                        <p class="statValue" id="profileTrophies">0</p>
+                    </div>
+                    <div class="statBox">
+                        <p class="statLabel">📊 RANK</p>
+                        <p class="statValue" id="profileRank">Bronze</p>
+                    </div>
+                </div>
+                
+                <div class="boxesSection">
+                    <h3>🎁 OPEN BOXES</h3>
+                    <div id="boxesContainer"></div>
+                </div>
+
+                <button class="btn" id="backFromProfile">← BACK</button>
+            </div>
+        </div>
+
+        <!-- Brawlers Gallery -->
+        <div id="brawlersGallery" class="screen">
+            <div class="galleryContent">
+                <h2>🦸 YOUR BRAWLERS</h2>
+                <div id="brawlersGalleryGrid" class="brawlersGalleryGrid"></div>
+                <button class="btn" id="backFromGallery">← BACK</button>
+            </div>
+        </div>
+
+        <!-- Trophy Road -->
+        <div id="trophyRoadScreen" class="screen">
+            <div class="trophyRoadContent">
+                <h2>🏆 TROPHY ROAD</h2>
+                <div id="trophyRoadList" class="trophyRoadList"></div>
+                <button class="btn" id="backFromTrophy">← BACK</button>
+            </div>
+        </div>
+
+        <!-- Pause Menu -->
+        <div id="pauseMenu" class="screen">
+            <div class="menuContent">
+                <h2>⏸️ PAUSED</h2>
+                <button class="btn btnLarge" id="resumeBtn">▶️ RESUME</button>
+                <button class="btn" id="pauseMenuBtn">🏠 MENU</button>
             </div>
         </div>
     </div>
 
+    <script src="data/brawlers.js"></script>
     <script src="game.js"></script>
 </body>
 </html>
