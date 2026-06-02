@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tafel Star - Arena Battle Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="gameContainer">
+        <!-- Menu Screen -->
+        <div id="menuScreen" class="screen active">
+            <div class="menuContent">
+                <h1>⭐ TAFEL STAR</h1>
+                <p class="subtitle">Vecht door tafels op te lossen!</p>
+                
+                <div class="playerInfo">
+                    <p>Trophies: <span id="displayTrophies">0</span></p>
+                    <p>Coins: <span id="displayCoins">0</span></p>
+                </div>
+                
+                <button class="btn btnLarge" id="playBtn">🎮 SPELEN</button>
+                <button class="btn" id="statsBtn">📊 Stats</button>
+                <button class="btn" id="settingsBtn">⚙️ Instellingen</button>
+            </div>
+        </div>
+
+        <!-- Game Screen (Arena) -->
+        <div id="gameScreen" class="screen">
+            <div class="gameHeader">
+                <div class="playerStats">
+                    <p>❤️ HP: <span id="playerHp">100</span>/100</p>
+                    <p>⚔️ Level: <span id="playerLevel">1</span></p>
+                </div>
+                <div class="matchTimer">
+                    <p>⏱️ Tijd: <span id="matchTimer">0</span>s</p>
+                </div>
+            </div>
+
+            <canvas id="gameCanvas" width="800" height="600"></canvas>
+
+            <div class="mathProblem" id="mathProblem">
+                <div class="problemBox">
+                    <p id="problemText">7 × 6 = ?</p>
+                    <div class="answers" id="answersContainer">
+                        <!-- Answers zullen hier dynamisch worden toegevoegd -->
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn btnSmall" id="pauseBtn">⏸️ Pauze</button>
+        </div>
+
+        <!-- Pause Screen -->
+        <div id="pauseScreen" class="screen">
+            <div class="menuContent">
+                <h2>GEPAUZEERD</h2>
+                <button class="btn btnLarge" id="resumeBtn">▶️ Doorgaan</button>
+                <button class="btn" id="menuBtn">🏠 Menu</button>
+            </div>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div id="gameOverScreen" class="screen">
+            <div class="menuContent">
+                <h2 id="gameOverTitle">GAME OVER</h2>
+                <div class="gameOverStats">
+                    <p>Trophies gewonnen: <span id="trophiesWon">+10</span></p>
+                    <p>Coins verdiend: <span id="coinsEarned">+50</span></p>
+                    <p>Vijanden verslagen: <span id="enemiesDefeated">3</span></p>
+                </div>
+                <button class="btn btnLarge" id="playAgainBtn">🔄 Opnieuw spelen</button>
+                <button class="btn" id="menuBtn2">🏠 Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
